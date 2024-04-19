@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+       - "${PORT:-3000}:${PORT:-3000}"
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      PORT: ${PORT:-3000}
+      DB_NAME: ${DB_NAME}
+      DB_USER_NAME: ${DB_USER_NAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER_NAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  pgdata:
