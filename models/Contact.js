@@ -12,7 +12,15 @@ const Contact = sequelize.define('contact', {
     allowNull: false,
   },
 });
-
+sequelize.sync()
+  .then(() => {
+    console.log('Contact table synchronized successfully with the database!');
+  })
+  .catch((error) => {
+    console.error('Unable to synchronize Contact table with the database:', error);
+    // Throw or handle the error appropriately
+  });
+  
 Contact.belongsTo(User);
 
 module.exports = Contact;

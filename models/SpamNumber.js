@@ -14,5 +14,12 @@ const SpamNumber = sequelize.define('spamNumber', {
     },
   });
   
- 
+  sequelize.sync()
+  .then(() => {
+    console.log('Spam Number table synchronized successfully with the database!');
+  })
+  .catch((error) => {
+    console.error('Unable to synchronize spam number table with the database:', error);
+    // Throw or handle the error appropriately
+  });
 module.exports = SpamNumber;
