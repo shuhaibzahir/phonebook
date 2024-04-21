@@ -6,5 +6,7 @@ const sequelize = new Sequelize(ENVS.DB_NAME, ENVS.DB_USER_NAME, ENVS.DB_PASSWOR
   host: 'localhost',
   dialect: 'postgres',
 });
+console.log(sequelize.options)
+ sequelize.options.logging = false;
 
 module.exports = sequelize;
