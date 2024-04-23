@@ -1,0 +1,228 @@
+{
+    "info": {
+        "_postman_id": "phone-book-app",
+        "name": "API Endpoints",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Register",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"name\": \"Your Name\",\n    \"phoneNumber\": \"Your Phone Number\",\n    \"email\": \"Your Email\",\n    \"password\": \"Your Password\"\n}"
+                },
+                "url": {
+                    "raw": "{{baseUrl}}/register",
+                    "protocol": "http",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "register"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Login",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"phoneNumber\": \"Your Phone Number\",\n    \"password\": \"Your Password\"\n}"
+                },
+                "url": {
+                    "raw": "{{baseUrl}}/login",
+                    "protocol": "http",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "login"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Contacts",
+            "item": [
+                {
+                    "name": "Add Contact",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer YOUR_AUTH_TOKEN",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"Contact Name\",\n    \"phoneNumber\": \"Contact Phone Number\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/contacts",
+                            "protocol": "http",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "contacts"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update Contact",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer YOUR_AUTH_TOKEN",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"Updated Contact Name\",\n    \"phoneNumber\": \"Updated Contact Phone Number\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/contacts/CONTACT_ID",
+                            "protocol": "http",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "contacts",
+                                "CONTACT_ID"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete Contact",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer YOUR_AUTH_TOKEN",
+                                "description": ""
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/contacts/CONTACT_ID",
+                            "protocol": "http",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "contacts",
+                                "CONTACT_ID"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Search",
+            "item": [
+                {
+                    "name": "Search By Name",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer YOUR_AUTH_TOKEN",
+                                "description": ""
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/search?name=SEARCH_NAME",
+                            "protocol": "http",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "search"
+                            ],
+                            "query": [
+                                {
+                                    "key": "name",
+                                    "value": "SEARCH_NAME"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Search By Phone Number",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer YOUR_AUTH_TOKEN",
+                                "description": ""
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/search/PHONE_NUMBER",
+                            "protocol": "http",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "search",
+                                "PHONE_NUMBER"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Spam",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer YOUR_AUTH_TOKEN",
+                        "description": ""
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"phoneNumber\": \"Spam Phone Number\",\n    \"isSpam\": true\n}"
+                },
+                "url": {
+                    "raw": "{{baseUrl}}/spam",
+                    "protocol": "http",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "spam"
+                    ]
+                }
+            },
+            "response": []
+        }
+    ]
+}
