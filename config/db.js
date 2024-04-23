@@ -2,11 +2,27 @@ const Sequelize = require('sequelize');
 const ENVS = require("./env");
 
 // Create connection to the database
-const sequelize = new Sequelize(ENVS.DB_NAME, ENVS.DB_USER_NAME, ENVS.DB_PASSWORD, {
-  host: 'localhost',
+console.log('Connecting to the database...');
+const sequelize = new Sequelize(ENVS.DB_URL, {
   dialect: 'postgres',
+  dialectOptions: {
+    ssl: {
+      require: true, // Require SSL/TLS
+      rejectUnauthorized: false // Ignore self-signed certificates
+    }
+  }
 });
-console.log(sequelize.options)
- sequelize.options.logging = false;
+sequelize.authenticate()
+.then(() => {
+  console.log('Connection to the database has been established successfully.');
+})
+.catch(err => {
+  console.error('Unable to connect to the database:', err);
+});
+
+// Disable logging
+sequelize.options.logging = false;
+
+sequelize.options.logging = false;
 
 module.exports = sequelize;
