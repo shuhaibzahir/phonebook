@@ -23,6 +23,4 @@ sequelize.authenticate()
 // Disable logging
 sequelize.options.logging = false;
 
-sequelize.options.logging = false;
-
 module.exports = sequelize;
